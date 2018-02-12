@@ -9,6 +9,7 @@
   "author": "Ani Pendakur <anipendakur@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1"
   }
 }
