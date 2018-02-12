@@ -1,0 +1,77 @@
+.img__caption--hide {
+  visibility: hidden;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.table {
+  width: 100%;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+}
+thead {
+  width: 100%;
+}
+.img--small {
+  height: 5em;
+}
+.img--small img {
+  height: 100%;
+}
+.img__container {
+  height: 20em;
+  margin-bottom: 1em;
+}
+.img__container figure, .img__container img {
+  height: 100%;
+}
+article {
+  margin-bottom: 2em;
+}
+.app {
+ max-width: 70vw;
+ margin-left: auto;
+ margin-right: auto;
+ margin-top: 5em;
+ margin-bottom: 5em;
+}
+.header__title {
+  text-align: center;
+}
+.container {
+  text-align: center;
+}
+button.button {
+  width: 10em;
+}
+.select__container {
+  display: flex;
+  justify-content: center;
+}
+.select {
+  width: 10em;
+  margin-right: 1em;
+}
+.select:first-of-type {
+  margin-left: 0em;
+}
+label {
+  text-align: right;
+}
+article .row {
+  margin-left: auto;
+  margin-right: auto;
+}
+.container .header--left {
+  text-align: left;
+}
+.hide {
+  display: none !important;
+}
+.container address {
+  text-align: left;
+}
+.address-err {
+  text-align: left;
+}

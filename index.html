@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Products Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- load the style -->
+    <link rel="stylesheet" type="text/css" href="app/css/main.css" />
+    <!-- optimization -->
+    <link rel="preload" as="style" href="app/css/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="preload" as="style" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+  </head>
+  <body>
+
+    <section class="app">
+      <h1 class="header__title">
+        Welcome to random product selection!
+      </h1>
+      <div class="container">
+        <div id="product-form-container"></div>
+        <div id="address-form-container"></div>
+      </div>
+      <div id="list-container" class="container hide"></div>
+      <div id="address-container" class="container"></div>
+    </section>
+
+    <script type="text/template" id="product-form">
+      <article class="article">
+        <div class="img__container">
+          <figure>
+            <picture>
+              <img src="app/img/tie.jpg" class="img" id="img">
+            </picture>
+            <figcaption class="img__caption--hide">Product Image</figcaption>
+          </figure>
+        </div>
+        <div class="select__container">
+          <select class="select form-control" id="prop">
+            <option class="select__option" value="size">Size</option>
+            <option class="select__option" value="color">Color</option>
+            <option class="select__option" value="quantity">Quantity</option>
+          </select>
+          <select class="select form-control" id="size">
+            <option class="select__option" value="small">Small</option>
+            <option class="select__option" value="medium">Medium</option>
+            <option class="select__option" value="large">Large</option>
+          </select>
+          <select class="select form-control hide" id="color">
+            <option class="select__option" value="red">red</option>
+            <option class="select__option" value="indigo">indigo</option>
+            <option class="select__option" value="yellow">yellow</option>
+          </select>
+          <div id="quantity" class="hide col-sm-5">
+            <input type="number" value="1" class="input form-control" min="1" id="quantity-input"/>
+          </div>
+          <button type="button" class="button add btn btn-dark">Add</button>
+        </div>
+      </article>
+    </script>
+
+    <script type="text/template" id="address-form">
+      <article class="article">
+        <div>
+          <h3 class="header--left">
+            Please enter a shipping address:
+          </h3>
+        </div>
+        <p class="text-danger hide address-err" ></p>
+        <div class="form-group row control-group">
+          <label class="col-sm-3 col-form-label" for="address1">
+            Address Line 1
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="input form-control" name="address1" id="address1">
+          </div>
+        </div>
+        <div class="form-group row control-group">
+          <label class="col-sm-3 col-form-label" for="address1">
+            Address Line 2
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="input form-control" name="address2" id="address2">
+          </div>
+        </div>
+        <div class="form-group row control-group">
+          <label class="col-sm-3 col-form-label" for="city">
+            City
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="input form-control" name="city" id="city">
+          </div>
+        </div>
+        <div class="form-group row control-group">
+          <label class="col-sm-3 col-form-label" for="state">
+            State
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="input form-control" name="state" id="state">
+          </div>
+        </div>
+        <div class="form-group row control-group">
+          <label class="col-sm-3 col-form-label" for="zip">
+            Zip
+          </label>
+          <div class="col-sm-6">
+            <input type="number" class="input form-control" name="zip" id="zip">
+          </div>
+        </div>
+        <button type="button" class="button finish btn btn-dark">Finish</button>
+      </article>
+    </script>
+
+    <script type="text/template" id="list-view" name="zip">
+      <article class="shopping-cart">
+        <div class="product-list">
+          <h3 class="header--left">
+            List of Products
+          </h3>
+          <table id="prod-list" class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Color</th>
+                <th scope="col">Size</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <%= rowHtml %>
+          </table>
+        </div>
+      </article>
+    </script>
+
+    <script type="text/template" id="address-view">
+      <article>
+        <address>
+          <h3 class="header--small">
+            Shipping Address
+          </h3>
+          <%= address1 %><br/>
+          <% if (address2.length) {%>
+            <%= address2 %><br/>
+          <% } %>
+          <%= city %><br/>
+          <%= state %><br/>
+          <%= zip %><br/>
+        </address>
+      </article>
+    </script>
+
+    <script type="text/template" id="prod-view">
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= color %></td>
+        <td><%= size %></td>
+        <td><%= quantity %></td>
+        <td class="img--small"><img src="<%=imgSrc%>"></td>
+      </tr>
+    </script>
+
+    <script src="app/lib/jquery.min.js"></script>
+    <script src="app/lib/underscore-min.js"></script>
+    <script src="app/lib/backbone-min.js"></script>
+    <script src="app/lib/backbone.localstorage.min.js"></script>
+    <script src="index.js"></script>
+    <script src="app/views/form.js"></script>
+    <script src="app/views/list.js"></script>
+    <script src="app/views/addressform.js"></script>
+    <script src="app/views/address.js"></script>
+    <script src="app/models/product.js"></script>
+    <script src="app/collections/products.js"></script>
+    <script src="app/models/address.js"></script>
+
+    <script>
+      window.addEventListener('load', () => {
+        // Init the app here.
+        app.init();
+      });
+    </script>
+  </body>
+</html>
