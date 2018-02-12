@@ -2,10 +2,10 @@
 A single page sample backbone application.
 
 
-##How to get started:
+## How to get started:
 * Install gulp
 * Run gulp in command line
 
 
-##TODO:
+## TODO:
 * Improve CSS.
